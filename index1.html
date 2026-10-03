@@ -1,0 +1,1858 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHUCHA ICE — Донер, Бургер, Балмұздақ</title>
+    <meta name="description" content="Chucha Ice — донер, бургер, фри, чикен және балмұздақ. WhatsApp арқылы тапсырыс беріңіз!">
+    <meta name="theme-color" content="#E50914">
+
+    <!-- ===== FAVICON / Логотип (favicon.jpeg файлын сайт папкасына салыңыз) ===== -->
+    <link rel="icon" type="image/jpeg" href="favicon.jpeg">
+    <link rel="apple-touch-icon" href="favicon.jpeg">
+
+    <!-- ===== ШРИФТТЕР ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- ===== ИКОНКАЛАР ===== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* =============================================
+           НЕГІЗГІ ТҮСТЕР — ҚЫЗЫЛ ТАҚЫРЫП
+           Түсті өзгерту үшін тек осы жерді өзгертіңіз
+           ============================================= */
+        :root {
+            --main: #E50914;            /* Басты қызыл */
+            --main-light: #FF3B45;      /* Ашық қызыл */
+            --main-dark: #B0060F;       /* Қою қызыл */
+            --main-rgb: 229, 9, 20;     /* rgba() үшін */
+            --cream: #FFF4E6;           /* Балмұздақ кремі — қосымша акцент */
+            --bg-dark: #0E0A0A;
+            --bg-card: #1A1314;
+            --bg-card-2: #221819;
+            --text-primary: #FFFFFF;
+            --text-secondary: #C2B5B6;
+            --text-muted: #8A7D7E;
+            --green: #25D366;
+            --green-dark: #1EBE57;
+            --radius: 18px;
+            --radius-sm: 12px;
+            --shadow: 0 10px 34px rgba(0,0,0,0.45);
+            --shadow-main: 0 6px 26px rgba(var(--main-rgb), 0.35);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--main) var(--bg-dark);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--main); border-radius: 3px; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Артқы фондағы "CHUCHA ICE" су белгісі */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='200'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Montserrat,sans-serif' font-weight='900' font-size='48' fill='rgba(229,9,20,0.035)' transform='rotate(-15, 250, 100)'%3ECHUCHA ICE%3C/text%3E%3C/svg%3E");
+        }
+
+        .page-wrapper { position: relative; z-index: 1; }
+
+        a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible {
+            outline: 2px solid var(--main-light);
+            outline-offset: 2px;
+        }
+
+        /* =============================================
+           НАВБАР
+           ============================================= */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(14, 10, 10, 0.82);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(var(--main-rgb), 0.15);
+            transition: var(--transition);
+        }
+        .navbar.scrolled { background: rgba(14, 10, 10, 0.96); box-shadow: 0 2px 20px rgba(0,0,0,0.5); }
+
+        .navbar-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+            gap: 16px;
+        }
+
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+
+        /* favicon.jpeg болмаса — "CI" әріптері көрінеді */
+        .logo-icon {
+            width: 44px; height: 44px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--main-light), var(--main-dark));
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900; font-size: 17px;
+            color: #fff;
+            box-shadow: var(--shadow-main);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+
+        .logo-text { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 21px; color: var(--text-primary); letter-spacing: -0.3px; }
+        .logo-text span { color: var(--main); }
+
+        .nav-links {
+            display: flex;
+            gap: 4px;
+            list-style: none;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding: 4px;
+        }
+        .nav-links::-webkit-scrollbar { display: none; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 9px;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        .nav-links a:hover, .nav-links a.active { color: #fff; background: rgba(var(--main-rgb), 0.18); }
+
+        .nav-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+
+        .cart-btn, .mobile-menu-btn {
+            position: relative;
+            width: 44px; height: 44px;
+            border-radius: 13px;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition);
+            -webkit-tap-highlight-color: transparent;
+        }
+        .cart-btn {
+            border: 1.5px solid rgba(var(--main-rgb), 0.4);
+            background: rgba(var(--main-rgb), 0.1);
+            color: var(--main-light);
+            font-size: 18px;
+        }
+        .cart-btn:hover { background: rgba(var(--main-rgb), 0.2); border-color: var(--main); transform: scale(1.05); }
+
+        .mobile-menu-btn {
+            display: none;
+            border: 1.5px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            color: var(--text-primary);
+            font-size: 19px;
+        }
+        .mobile-menu-btn:hover { border-color: rgba(var(--main-rgb), 0.4); }
+
+        .cart-badge, .fbadge {
+            position: absolute;
+            top: -6px; right: -6px;
+            background: #fff;
+            color: var(--main-dark);
+            font-size: 11px;
+            font-weight: 800;
+            min-width: 20px; height: 20px;
+            border-radius: 10px;
+            display: none;
+            align-items: center; justify-content: center;
+            padding: 0 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .cart-badge.show, .fbadge.show { display: flex; }
+        .bump { animation: bump 0.4s ease; }
+        @keyframes bump { 0%,100% { transform: scale(1); } 50% { transform: scale(1.35); } }
+
+        /* =============================================
+           HERO
+           ============================================= */
+        .hero {
+            min-height: 100vh;
+            min-height: 100svh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 110px 24px 70px;
+            overflow: hidden;
+        }
+
+        /* Фондағы фото + қызыл градиент */
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg, rgba(14,10,10,0.55) 0%, rgba(14,10,10,0.85) 60%, var(--bg-dark) 100%),
+                radial-gradient(circle at 25% 35%, rgba(var(--main-rgb), 0.35) 0%, transparent 55%),
+                url('https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=1600&q=70') center/cover no-repeat;
+            animation: heroZoom 18s ease-in-out infinite alternate;
+        }
+        @keyframes heroZoom { from { transform: scale(1); } to { transform: scale(1.08); } }
+
+        /* Қар/балмұздақ бөлшектері */
+        .hero-particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat 6s infinite;
+        }
+        @keyframes particleFloat {
+            0% { opacity: 0; transform: translateY(100vh) scale(0); }
+            20% { opacity: 0.7; }
+            80% { opacity: 0.3; }
+            100% { opacity: 0; transform: translateY(-20vh) scale(1); }
+        }
+
+        .hero-content { position: relative; z-index: 2; text-align: center; max-width: 920px; }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 20px;
+            background: rgba(var(--main-rgb), 0.16);
+            border: 1px solid rgba(var(--main-rgb), 0.35);
+            border-radius: 50px;
+            margin-bottom: 26px;
+            font-size: 14px;
+            color: #fff;
+            font-weight: 600;
+            animation: fadeInDown 0.8s ease;
+        }
+        .hero-badge i { color: var(--main-light); }
+
+        .hero-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: clamp(52px, 9vw, 112px);
+            line-height: 0.95;
+            letter-spacing: -2px;
+            margin-bottom: 14px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+        .hero-title .red {
+            background: linear-gradient(135deg, var(--main-light), var(--main), var(--main-dark));
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 6px 30px rgba(var(--main-rgb), 0.45));
+        }
+        .hero-title .ice { color: var(--cream); }
+
+        .hero-subtitle-main {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: clamp(18px, 2.8vw, 32px);
+            color: var(--text-secondary);
+            margin-bottom: 22px;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+        .hero-subtitle-main span { color: var(--main-light); }
+
+        .hero-desc {
+            font-size: 17px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 620px;
+            margin: 0 auto 24px;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .hero-features {
+            display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
+            margin-bottom: 38px;
+            animation: fadeInUp 0.8s ease 0.5s both;
+        }
+        .hero-feature {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 14px; color: #fff;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 50px;
+            backdrop-filter: blur(8px);
+        }
+        .hero-feature i { color: var(--main-light); }
+
+        .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; animation: fadeInUp 0.8s ease 0.6s both; }
+
+        .btn-primary, .btn-secondary {
+            padding: 16px 34px;
+            font-weight: 700;
+            font-size: 15px;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex; align-items: center; gap: 10px;
+            font-family: 'Inter', sans-serif;
+            min-height: 52px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--main-light), var(--main-dark));
+            color: #fff;
+            border: none;
+            box-shadow: var(--shadow-main);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 34px rgba(var(--main-rgb), 0.5); }
+        .btn-secondary {
+            background: rgba(255,255,255,0.06);
+            color: var(--text-primary);
+            border: 1.5px solid rgba(255,255,255,0.14);
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+
+        .hero-scroll-indicator {
+            position: absolute;
+            bottom: 26px; left: 50%;
+            transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 6px;
+            color: var(--text-muted); font-size: 12px;
+            animation: bounce 2s infinite;
+            z-index: 2;
+        }
+        @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* =============================================
+           КАТЕГОРИЯ ЧИПТЕРІ (мобильде жабысып тұрады)
+           ============================================= */
+        .category-bar {
+            position: sticky;
+            top: 70px;
+            z-index: 900;
+            background: rgba(14,10,10,0.9);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: none;
+        }
+        .category-bar-inner {
+            display: flex; gap: 8px;
+            overflow-x: auto;
+            padding: 10px 16px;
+            scrollbar-width: none;
+        }
+        .category-bar-inner::-webkit-scrollbar { display: none; }
+        .category-chip {
+            flex-shrink: 0;
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 8px 14px;
+            border-radius: 50px;
+            font-size: 13px; font-weight: 600;
+            color: var(--text-secondary);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            text-decoration: none;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        .category-chip.active { color: #fff; background: var(--main); border-color: var(--main); }
+
+        /* =============================================
+           СЕКЦИЯЛАР
+           ============================================= */
+        .section { padding: 80px 24px; max-width: 1400px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 46px; }
+        .section-tag {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 16px;
+            background: rgba(var(--main-rgb), 0.12);
+            border: 1px solid rgba(var(--main-rgb), 0.25);
+            border-radius: 50px;
+            font-size: 13px; color: var(--main-light); font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .section-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(28px, 4vw, 44px); margin-bottom: 12px; letter-spacing: -0.5px; }
+        .section-title span { color: var(--main); }
+        .section-desc { color: var(--text-secondary); font-size: 16px; max-width: 520px; margin: 0 auto; }
+
+        /* =============================================
+           МӘЗІР КАРТОЧКАЛАРЫ
+           ============================================= */
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 20px; }
+
+        .menu-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition);
+            position: relative;
+            display: flex; flex-direction: column;
+        }
+        .menu-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(var(--main-rgb), 0.35);
+            box-shadow: 0 14px 40px rgba(0,0,0,0.35), 0 0 0 1px rgba(var(--main-rgb), 0.15);
+        }
+
+        .menu-card-img-wrapper { overflow: hidden; position: relative; height: 210px; background: var(--bg-card-2); }
+        .menu-card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block; }
+        .menu-card:hover .menu-card-img { transform: scale(1.06); }
+        .menu-card-img-wrapper::after {
+            content: '';
+            position: absolute; inset: auto 0 0 0; height: 50%;
+            background: linear-gradient(transparent, rgba(26,19,20,0.8));
+            pointer-events: none;
+        }
+
+        .menu-card-badge {
+            position: absolute;
+            top: 12px; left: 12px;
+            padding: 5px 11px;
+            background: var(--main);
+            color: #fff;
+            font-size: 11px; font-weight: 800;
+            border-radius: 7px;
+            text-transform: uppercase;
+            z-index: 2;
+            box-shadow: 0 4px 12px rgba(var(--main-rgb), 0.4);
+        }
+
+        .menu-card-body { padding: 18px; display: flex; flex-direction: column; flex: 1; }
+        .menu-card-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 6px; line-height: 1.3; }
+        .menu-card-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; line-height: 1.45; }
+
+        /* Сыйлық белгісі (ақ соус + перчик) */
+        .gift-tag {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 12px; font-weight: 600;
+            color: var(--cream);
+            background: rgba(255,244,230,0.07);
+            border: 1px dashed rgba(255,244,230,0.25);
+            border-radius: 8px;
+            padding: 5px 9px;
+            margin-bottom: 12px;
+            align-self: flex-start;
+        }
+        .gift-tag i { color: var(--main-light); }
+
+        /* Дәм таңдау (Отбасылық балмұздақ) — бірнеше дәмді бірден таңдауға болады */
+        .flavor-picker { margin-bottom: 12px; }
+        .flavor-picker-label {
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 12px; font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        .flavor-picker-label b { color: var(--main-light); }
+        .flavor-chips { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+        .flavor-chip {
+            display: flex; align-items: center; justify-content: center; gap: 5px;
+            min-height: 38px;
+            padding: 6px 8px;
+            border: 1.5px solid rgba(255,255,255,0.12);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.04);
+            color: var(--text-secondary);
+            font-family: 'Inter', sans-serif;
+            font-size: 12px; font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            text-align: center;
+            line-height: 1.2;
+        }
+        .flavor-chip .fc-check {
+            width: 16px; height: 16px;
+            border-radius: 5px;
+            border: 1.5px solid rgba(255,255,255,0.25);
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 9px; color: transparent;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+        .flavor-chip[aria-pressed="true"] {
+            border-color: var(--main);
+            background: rgba(var(--main-rgb), 0.16);
+            color: #fff;
+        }
+        .flavor-chip[aria-pressed="true"] .fc-check { background: var(--main); border-color: var(--main); color: #fff; }
+        .flavor-picker.shake { animation: shake 0.4s ease; }
+        @keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+
+        .menu-card-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: auto; gap: 8px; }
+        .menu-card-price { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 21px; color: var(--main-light); white-space: nowrap; }
+        .menu-card-price small { font-size: 13px; font-weight: 600; color: var(--text-muted); }
+
+        .quantity-controls { display: flex; align-items: center; background: rgba(255,255,255,0.06); border-radius: 11px; overflow: hidden; }
+        .qty-btn {
+            width: 38px; height: 38px;
+            border: none; background: transparent;
+            color: var(--text-primary);
+            font-size: 18px;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition);
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            user-select: none;
+        }
+        .qty-btn:hover, .qty-btn:active { background: rgba(var(--main-rgb), 0.2); color: var(--main-light); }
+        .qty-display { width: 30px; text-align: center; font-size: 14px; font-weight: 700; }
+
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 13px;
+            margin-top: 12px;
+            background: linear-gradient(135deg, var(--main-light), var(--main-dark));
+            color: #fff;
+            font-weight: 700; font-size: 13px;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        .add-to-cart-btn:hover { box-shadow: var(--shadow-main); transform: translateY(-1px); }
+        .add-to-cart-btn.added { background: linear-gradient(135deg, var(--green), var(--green-dark)); }
+
+        /* =============================================
+           НЕГЕ БІЗ / About
+           ============================================= */
+        .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+        .about-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 30px 24px;
+            border: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+            transition: var(--transition);
+        }
+        .about-card:hover { transform: translateY(-4px); border-color: rgba(var(--main-rgb), 0.3); }
+        .about-card-icon {
+            width: 62px; height: 62px;
+            background: rgba(var(--main-rgb), 0.12);
+            border-radius: 18px;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 25px;
+            color: var(--main-light);
+        }
+        .about-card h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 17px; margin-bottom: 8px; }
+        .about-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+        /* =============================================
+           БАЛМҰЗДАҚ БАННЕРІ
+           ============================================= */
+        .ice-banner {
+            max-width: 1352px;
+            margin: 0 auto;
+            border-radius: 26px;
+            overflow: hidden;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            background: linear-gradient(135deg, var(--main) 0%, var(--main-dark) 100%);
+            box-shadow: 0 20px 60px rgba(var(--main-rgb), 0.3);
+        }
+        .ice-banner-text { padding: 48px; position: relative; z-index: 2; }
+        .ice-banner-text .section-tag { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); color: #fff; }
+        .ice-banner-text h2 { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(28px, 4vw, 46px); line-height: 1.05; margin-bottom: 14px; }
+        .ice-banner-text p { color: rgba(255,255,255,0.85); font-size: 16px; line-height: 1.6; margin-bottom: 22px; max-width: 420px; }
+        .flavor-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+        .flavor-pill { padding: 7px 14px; background: rgba(255,255,255,0.15); border-radius: 50px; font-size: 13px; font-weight: 600; }
+        .ice-banner .btn-primary { background: #fff; color: var(--main-dark); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        .ice-banner-img { min-height: 320px; background: url('https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=1000&q=70') center/cover; }
+
+        /* =============================================
+           СЕБЕТ
+           ============================================= */
+        .cart-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            opacity: 0; visibility: hidden;
+            transition: var(--transition);
+        }
+        .cart-overlay.open { opacity: 1; visibility: visible; }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0; right: -470px;
+            width: 450px; max-width: 100vw;
+            height: 100vh; height: 100dvh;
+            background: var(--bg-dark);
+            border-left: 1px solid rgba(var(--main-rgb), 0.18);
+            z-index: 2001;
+            display: flex; flex-direction: column;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .cart-sidebar.open { right: 0; }
+
+        .cart-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            display: flex; align-items: center; justify-content: space-between;
+            flex-shrink: 0;
+        }
+        .cart-header h3 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 20px; display: flex; align-items: center; gap: 10px; }
+        .cart-header h3 i { color: var(--main); }
+        .cart-close {
+            width: 42px; height: 42px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 11px;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 18px;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition);
+        }
+        .cart-close:hover { background: rgba(255,255,255,0.08); color: #fff; }
+
+        .cart-items { flex: 1; overflow-y: auto; padding: 14px 24px; -webkit-overflow-scrolling: touch; }
+
+        .cart-empty {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            height: 100%; min-height: 220px;
+            color: var(--text-muted); text-align: center; gap: 16px;
+        }
+        .cart-empty i { font-size: 50px; color: rgba(var(--main-rgb), 0.35); }
+
+        .cart-item {
+            display: flex; align-items: center; gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+        .cart-item-img { width: 58px; height: 58px; border-radius: 12px; object-fit: cover; flex-shrink: 0; background: var(--bg-card-2); }
+        .cart-item-info { flex: 1; min-width: 0; }
+        .cart-item-name { font-weight: 600; font-size: 13px; margin-bottom: 4px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .cart-item-price { font-size: 13px; color: var(--main-light); font-weight: 700; }
+        .cart-item-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+        .cart-item-qty { display: flex; align-items: center; background: rgba(255,255,255,0.06); border-radius: 9px; overflow: hidden; }
+        .cart-item-qty button {
+            width: 36px; height: 36px;
+            border: none; background: transparent;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px; font-weight: 600;
+            display: flex; align-items: center; justify-content: center;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+        .cart-item-qty button:hover, .cart-item-qty button:active { background: rgba(var(--main-rgb), 0.25); color: var(--main-light); }
+        .cart-item-qty span { width: 28px; text-align: center; font-size: 14px; font-weight: 700; }
+        .cart-item-remove {
+            width: 36px; height: 36px;
+            border: none;
+            background: rgba(var(--main-rgb), 0.12);
+            color: var(--main-light);
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition);
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .cart-item-remove:hover, .cart-item-remove:active { background: rgba(var(--main-rgb), 0.3); }
+
+        .cart-footer {
+            padding: 20px 24px;
+            padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+            border-top: 1px solid rgba(255,255,255,0.06);
+            flex-shrink: 0;
+        }
+        .cart-total-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .cart-total-label { font-size: 16px; color: var(--text-secondary); font-weight: 500; }
+        .cart-total-value { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 26px; color: var(--main-light); }
+
+        .order-type-section { margin-bottom: 16px; }
+        .order-type-label { font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; font-weight: 500; }
+        .order-type-btns { display: flex; gap: 8px; }
+        .order-type-btn {
+            flex: 1;
+            padding: 11px;
+            border: 1.5px solid rgba(255,255,255,0.1);
+            border-radius: 11px;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 13px; font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+            font-family: 'Inter', sans-serif;
+            touch-action: manipulation;
+        }
+        .order-type-btn.active { border-color: var(--main); background: rgba(var(--main-rgb), 0.14); color: #fff; }
+
+        .address-input-wrapper { margin-top: 10px; display: none; }
+        .address-input-wrapper.show { display: block; }
+        .address-input {
+            width: 100%;
+            padding: 12px 14px;
+            background: rgba(255,255,255,0.05);
+            border: 1.5px solid rgba(255,255,255,0.1);
+            border-radius: 11px;
+            color: #fff;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: var(--transition);
+        }
+        .address-input:focus { border-color: var(--main); background: rgba(var(--main-rgb), 0.06); }
+        .address-input::placeholder { color: var(--text-muted); }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            color: #fff;
+            font-weight: 700; font-size: 15px;
+            border: none;
+            border-radius: 13px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            font-family: 'Inter', sans-serif;
+            touch-action: manipulation;
+        }
+        .checkout-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.3); }
+
+        /* =============================================
+           ФУТЕР
+           ============================================= */
+        .footer { background: var(--bg-card); border-top: 1px solid rgba(var(--main-rgb), 0.12); padding: 60px 24px 24px; margin-top: 40px; }
+        .footer-inner { max-width: 1400px; margin: 0 auto 40px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+        .footer-brand .logo { margin-bottom: 16px; }
+        .footer-brand p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px; max-width: 380px; }
+        .social-links { display: flex; gap: 10px; }
+        .social-link {
+            width: 44px; height: 44px;
+            border: 1.5px solid rgba(255,255,255,0.1);
+            border-radius: 13px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-secondary);
+            font-size: 18px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .social-link:hover { border-color: var(--main); color: #fff; background: var(--main); transform: translateY(-2px); }
+        .footer-col h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 16px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 9px; }
+        .footer-col ul li a { color: var(--text-secondary); text-decoration: none; font-size: 14px; transition: var(--transition); display: inline-flex; align-items: center; gap: 8px; }
+        .footer-col ul li a:hover { color: var(--main-light); }
+        .footer-bottom {
+            max-width: 1400px; margin: 0 auto;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+        }
+        .footer-bottom p { font-size: 13px; color: var(--text-muted); }
+        .footer-bottom p span { color: var(--main-light); }
+
+        /* =============================================
+           МОБИЛЬДІ НАВИГАЦИЯ
+           ============================================= */
+        .mobile-nav-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.55);
+            z-index: 1500;
+            opacity: 0; visibility: hidden;
+            transition: var(--transition);
+        }
+        .mobile-nav-overlay.open { opacity: 1; visibility: visible; }
+        .mobile-nav-drawer {
+            position: fixed;
+            top: 0; left: -310px;
+            width: 290px; height: 100%;
+            background: var(--bg-dark);
+            z-index: 1501;
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 24px;
+            overflow-y: auto;
+            border-right: 1px solid rgba(var(--main-rgb), 0.18);
+        }
+        .mobile-nav-drawer.open { left: 0; }
+        .mobile-nav-drawer .logo { margin-bottom: 28px; }
+        .mobile-nav-drawer ul { list-style: none; }
+        .mobile-nav-drawer ul li a {
+            display: flex; align-items: center; gap: 12px;
+            padding: 13px 14px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 15px; font-weight: 500;
+            border-radius: 11px;
+            transition: var(--transition);
+        }
+        .mobile-nav-drawer ul li a:hover { color: #fff; background: rgba(var(--main-rgb), 0.15); }
+        .mobile-nav-drawer ul li a i { width: 22px; text-align: center; color: var(--main-light); }
+
+        /* Қалқымалы себет (мобильде) */
+        .floating-cart {
+            display: none;
+            position: fixed;
+            bottom: calc(22px + env(safe-area-inset-bottom, 0px));
+            right: 20px;
+            width: 62px; height: 62px;
+            background: linear-gradient(135deg, var(--main-light), var(--main-dark));
+            border-radius: 20px;
+            border: none;
+            color: #fff;
+            font-size: 22px;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 10px 28px rgba(var(--main-rgb), 0.5);
+            transition: var(--transition);
+            align-items: center; justify-content: center;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Toast */
+        .toast-container {
+            position: fixed;
+            top: 82px; right: 20px;
+            z-index: 3000;
+            display: flex; flex-direction: column; gap: 8px;
+            pointer-events: none;
+        }
+        .toast {
+            background: var(--bg-card);
+            border: 1px solid rgba(var(--main-rgb), 0.3);
+            border-left: 4px solid var(--main);
+            border-radius: 12px;
+            padding: 13px 18px;
+            display: flex; align-items: center; gap: 10px;
+            font-size: 14px; font-weight: 500;
+            box-shadow: var(--shadow);
+            animation: toastIn 0.3s ease, toastOut 0.3s ease 2.5s forwards;
+            max-width: calc(100vw - 40px);
+        }
+        .toast i { color: var(--main-light); font-size: 17px; }
+        @keyframes toastIn { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes toastOut { to { opacity: 0; transform: translateX(30px); } }
+
+        /* Скролл анимациясы */
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* =============================================
+           АДАПТИВ
+           ============================================= */
+        @media (max-width: 1024px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: flex; }
+            .floating-cart { display: flex; }
+            .category-bar { display: block; }
+            .ice-banner { grid-template-columns: 1fr; margin: 0 16px; }
+            .ice-banner-img { min-height: 220px; order: -1; }
+        }
+
+        @media (max-width: 768px) {
+            .hero { padding: 100px 20px 60px; }
+            .hero-feature { font-size: 12px; padding: 7px 12px; }
+            .footer-inner { grid-template-columns: 1fr; gap: 30px; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .cart-sidebar { width: 100%; right: -100%; }
+            .section { padding: 56px 14px; }
+            .section-header { margin-bottom: 24px; }
+            .ice-banner-text { padding: 30px 24px; }
+
+            /* Мәзір — 2 баған */
+            .menu-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .menu-card-img-wrapper { height: 120px; }
+            .menu-card-badge { top: 6px; left: 6px; padding: 3px 7px; font-size: 9px; }
+            .menu-card-body { padding: 10px; }
+            .menu-card-name { font-size: 13px; }
+            .menu-card-desc { font-size: 11px; margin-bottom: 8px; }
+            .gift-tag { font-size: 10px; padding: 4px 6px; margin-bottom: 8px; }
+            .flavor-chips { grid-template-columns: 1fr; gap: 5px; }
+            .flavor-chip { min-height: 34px; font-size: 11px; justify-content: flex-start; }
+            .flavor-picker-label { font-size: 10px; margin-bottom: 6px; }
+            .menu-card-bottom { flex-direction: column; align-items: stretch; gap: 6px; }
+            .menu-card-price { font-size: 17px; }
+            .quantity-controls { justify-content: space-between; }
+            .qty-btn { width: 36px; height: 34px; }
+            .add-to-cart-btn { padding: 10px 6px; font-size: 12px; margin-top: 8px; }
+        }
+
+        @media (max-width: 400px) {
+            .hero-cta { flex-direction: column; align-items: stretch; }
+            .btn-primary, .btn-secondary { justify-content: center; }
+            .menu-grid { gap: 8px; }
+            .menu-card-img-wrapper { height: 104px; }
+            .menu-card-body { padding: 8px; }
+            .menu-card-name { font-size: 12px; }
+            .add-to-cart-btn { font-size: 11px; }
+            .logo-text { font-size: 18px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+            html { scroll-behavior: auto; }
+        }
+
+        /* =============================================
+           ТАНЫСТЫРУ ЖҮЙЕСІ / Onboarding
+           ============================================= */
+        .onboard-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 10000; transition: opacity 0.4s ease; }
+        .onboard-overlay.hidden { opacity: 0; pointer-events: none; }
+        .onboard-welcome, .onboard-finish {
+            position: fixed; inset: 0;
+            z-index: 10001;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center;
+            padding: 32px;
+            transition: opacity 0.5s ease;
+        }
+        .onboard-welcome.hidden { opacity: 0; pointer-events: none; }
+        .onboard-finish { opacity: 0; pointer-events: none; }
+        .onboard-finish.visible { opacity: 1; pointer-events: auto; }
+        .onboard-welcome-logo {
+            width: 100px; height: 100px;
+            background: linear-gradient(135deg, var(--main-light), var(--main-dark));
+            border-radius: 30px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 34px; color: #fff;
+            margin-bottom: 30px;
+            animation: onboardPulse 2s ease-in-out infinite;
+        }
+        @keyframes onboardPulse {
+            0%,100% { box-shadow: 0 0 40px rgba(var(--main-rgb), 0.35); transform: scale(1); }
+            50% { box-shadow: 0 0 80px rgba(var(--main-rgb), 0.6); transform: scale(1.05); }
+        }
+        .onboard-welcome h1 { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(28px, 6vw, 48px); margin-bottom: 10px; }
+        .onboard-welcome h1 span, .onboard-finish h2 { color: var(--main-light); }
+        .onboard-welcome p, .onboard-finish p { font-size: 16px; color: var(--text-secondary); margin-bottom: 36px; line-height: 1.6; max-width: 400px; }
+        .onboard-btn {
+            padding: 16px 46px;
+            background: linear-gradient(135deg, var(--main-light), var(--main-dark));
+            color: #fff;
+            font-family: 'Inter', sans-serif; font-weight: 700; font-size: 16px;
+            border: none; border-radius: 14px;
+            cursor: pointer;
+            box-shadow: var(--shadow-main);
+            display: inline-flex; align-items: center; gap: 10px;
+            touch-action: manipulation;
+            transition: var(--transition);
+        }
+        .onboard-btn:hover { transform: translateY(-2px); }
+        .onboard-btn-sm { padding: 12px 30px; font-size: 14px; }
+        .onboard-skip {
+            position: fixed; top: 20px; right: 20px;
+            z-index: 10003;
+            padding: 9px 20px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 9px;
+            color: var(--text-secondary);
+            font-size: 13px; font-weight: 500;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+        .onboard-skip.hidden { display: none; }
+        .onboard-tooltip {
+            position: fixed;
+            z-index: 10002;
+            background: var(--bg-card);
+            border: 2px solid var(--main);
+            border-radius: 18px;
+            padding: 22px;
+            width: min(320px, calc(100vw - 32px));
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 30px rgba(var(--main-rgb), 0.2);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            pointer-events: none;
+        }
+        .onboard-tooltip.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+        .onboard-tooltip-step {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 4px 12px;
+            background: rgba(var(--main-rgb), 0.18);
+            border-radius: 20px;
+            font-size: 11px; font-weight: 700;
+            color: var(--main-light);
+            margin-bottom: 12px;
+        }
+        .onboard-tooltip h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 17px; margin-bottom: 8px; }
+        .onboard-tooltip p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 18px; }
+        .onboard-dots { display: flex; gap: 6px; justify-content: center; margin-top: 22px; }
+        .onboard-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); transition: all 0.3s ease; }
+        .onboard-dot.active { background: var(--main); width: 24px; border-radius: 4px; }
+        .onboard-highlight { position: relative; z-index: 10001 !important; border-radius: 12px; animation: onboardGlow 1.5s ease-in-out infinite; }
+        @keyframes onboardGlow {
+            0%,100% { box-shadow: 0 0 0 4px rgba(var(--main-rgb), 0.7), 0 0 20px rgba(var(--main-rgb), 0.4); }
+            50% { box-shadow: 0 0 0 6px rgba(var(--main-rgb), 0.9), 0 0 40px rgba(var(--main-rgb), 0.6); }
+        }
+        .onboard-finger { position: fixed; z-index: 10002; font-size: 32px; animation: onboardPoint 1s ease-in-out infinite; pointer-events: none; opacity: 0; transition: opacity 0.3s; }
+        .onboard-finger.visible { opacity: 1; }
+        @keyframes onboardPoint { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        .onboard-finish-icon { font-size: 64px; margin-bottom: 22px; }
+        .onboard-finish h2 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(24px, 5vw, 36px); margin-bottom: 12px; }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+    <!-- ===== НАВБАР ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-inner">
+            <a href="#hero" class="logo" aria-label="Chucha Ice басты бет">
+                <div class="logo-icon"><img src="favicon.jpeg" alt="" onerror="this.remove()">CI</div>
+                <div class="logo-text"><span>CHUCHA</span> ICE</div>
+            </a>
+
+            <!-- Десктоп навигация — JavaScript толтырады -->
+            <ul class="nav-links" id="navLinks"></ul>
+
+            <div class="nav-right">
+                <button class="cart-btn" id="cartBtn" onclick="toggleCart()" aria-label="Себетті ашу">
+                    <i class="fas fa-bag-shopping"></i>
+                    <span class="cart-badge" id="cartBadge">0</span>
+                </button>
+                <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="Мәзір">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== МОБИЛЬДІ МӘЗІР ===== -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="toggleMobileNav()"></div>
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+        <a href="#hero" class="logo" onclick="toggleMobileNav()">
+            <div class="logo-icon"><img src="favicon.jpeg" alt="" onerror="this.remove()">CI</div>
+            <div class="logo-text"><span>CHUCHA</span> ICE</div>
+        </a>
+        <ul id="mobileNavList"></ul>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-particles" id="particles"></div>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-fire"></i>
+                Ыстық донер + салқын балмұздақ
+            </div>
+
+            <h1 class="hero-title">
+                <span class="red">CHUCHA</span> <span class="ice">ICE</span>
+            </h1>
+            <p class="hero-subtitle-main">Донер · Бургер · <span>Балмұздақ</span></p>
+
+            <p class="hero-desc">
+                Шырынды донерлер, қытырлақ фри мен чикен, ал соңында — салқын, кремді балмұздақ. Бәрі бір жерде!
+            </p>
+
+            <div class="hero-features">
+                <div class="hero-feature"><i class="fas fa-gift"></i> Донерге ақ соус + перчик сыйлыққа</div>
+                <div class="hero-feature"><i class="fas fa-ice-cream"></i> 4 дәм балмұздақ</div>
+                <div class="hero-feature"><i class="fas fa-truck"></i> Жеткізу бар</div>
+            </div>
+
+            <div class="hero-cta">
+                <a href="#doner" class="btn-primary"><i class="fas fa-utensils"></i> Мәзірді көру</a>
+                <a href="#icecream" class="btn-secondary"><i class="fas fa-ice-cream"></i> Балмұздақтар</a>
+            </div>
+        </div>
+
+        <div class="hero-scroll-indicator">
+            <span>Төмен қарай</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- ===== Категория чиптері (мобильде) ===== -->
+    <div class="category-bar" id="categoryBar">
+        <div class="category-bar-inner" id="categoryBarInner"></div>
+    </div>
+
+    <!-- ===== НЕГЕ БІЗ ===== -->
+    <section class="section" id="about">
+        <div class="section-header reveal">
+            <div class="section-tag"><i class="fas fa-star"></i> Біздің ерекшелік</div>
+            <h2 class="section-title">Неге <span>CHUCHA ICE</span>?</h2>
+            <p class="section-desc">Ыстық пен салқынның тамаша үйлесімі</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-card reveal">
+                <div class="about-card-icon"><i class="fas fa-fire-burner"></i></div>
+                <h4>Шырынды донер</h4>
+                <p>Тауық немесе сиыр еті, классикалық немесе батонда — таңдау сізде</p>
+            </div>
+            <div class="about-card reveal">
+                <div class="about-card-icon"><i class="fas fa-gift"></i></div>
+                <h4>Сыйлық соус</h4>
+                <p>Әр донерге ақ соус пен перчик тегін қосылады</p>
+            </div>
+            <div class="about-card reveal">
+                <div class="about-card-icon"><i class="fas fa-ice-cream"></i></div>
+                <h4>Кремді балмұздақ</h4>
+                <p>Сливочный, шоколад, құлпынай және Бабл Гам дәмдері</p>
+            </div>
+            <div class="about-card reveal">
+                <div class="about-card-icon"><i class="fab fa-whatsapp"></i></div>
+                <h4>Оңай тапсырыс</h4>
+                <p>Себетке салып, бір батырмамен WhatsApp арқылы жіберіңіз</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== МӘЗІР БӨЛІМДЕРІ — JavaScript генерациялайды ===== -->
+    <div id="menuSections"></div>
+
+    <!-- ===== ФУТЕР ===== -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="#hero" class="logo">
+                    <div class="logo-icon"><img src="favicon.jpeg" alt="" onerror="this.remove()">CI</div>
+                    <div class="logo-text"><span>CHUCHA</span> ICE</div>
+                </a>
+                <p>Донер, бургер, фри, чикен және кремді балмұздақ — бәрі сіз үшін. Тапсырысты WhatsApp арқылы беріңіз!</p>
+                <div class="social-links">
+                    <a href="#" target="_blank" rel="noopener" class="social-link" id="instaLink" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" rel="noopener" class="social-link" id="tiktokLink" title="TikTok" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" target="_blank" rel="noopener" class="social-link" id="waLink" title="WhatsApp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Мәзір</h4>
+                <ul id="footerMenuList"></ul>
+            </div>
+            <div class="footer-col">
+                <h4>Байланыс</h4>
+                <ul>
+                    <li><a href="#" id="phoneLink"><i class="fas fa-phone"></i> <span id="phoneText"></span></a></li>
+                    <li><a href="#" target="_blank" rel="noopener" id="instaLink2"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#" target="_blank" rel="noopener" id="tiktokLink2"><i class="fab fa-tiktok"></i> TikTok</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© <span id="year"></span> <span>CHUCHA ICE</span>. Барлық құқықтар қорғалған.</p>
+            <p>Қазақстан 🇰🇿</p>
+        </div>
+    </footer>
+</div>
+
+<!-- ===== СЕБЕТ ===== -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<aside class="cart-sidebar" id="cartSidebar" aria-label="Себет">
+    <div class="cart-header">
+        <h3><i class="fas fa-bag-shopping"></i> Себет</h3>
+        <button class="cart-close" onclick="toggleCart()" aria-label="Жабу"><i class="fas fa-xmark"></i></button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+        <div class="cart-total-row">
+            <span class="cart-total-label">Жалпы сома:</span>
+            <span class="cart-total-value" id="cartTotal">0 ₸</span>
+        </div>
+        <div class="order-type-section">
+            <div class="order-type-label">Тапсырыс түрі:</div>
+            <div class="order-type-btns">
+                <button class="order-type-btn active" onclick="selectOrderType(this, 'собой')"><i class="fas fa-bag-shopping"></i> Собой</button>
+                <button class="order-type-btn" onclick="selectOrderType(this, 'доставка')"><i class="fas fa-truck"></i> Доставка</button>
+            </div>
+            <div class="address-input-wrapper" id="addressWrapper">
+                <input type="text" class="address-input" id="addressInput" placeholder="Мекен-жайыңызды жазыңыз..." autocomplete="street-address">
+            </div>
+        </div>
+        <button class="checkout-btn" onclick="sendToWhatsApp()">
+            <i class="fab fa-whatsapp"></i> WhatsApp арқылы тапсырыс беру
+        </button>
+    </div>
+</aside>
+
+<!-- Қалқымалы себет -->
+<button class="floating-cart" id="floatingCart" onclick="toggleCart()" aria-label="Себетті ашу">
+    <i class="fas fa-bag-shopping"></i>
+    <span class="fbadge" id="floatingBadge">0</span>
+</button>
+
+<div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+<!-- ===== ТАНЫСТЫРУ / Onboarding ===== -->
+<div class="onboard-overlay hidden" id="onboardOverlay"></div>
+<button class="onboard-skip hidden" id="onboardSkip" onclick="onboardEnd()">Өткізу ⟩</button>
+
+<div class="onboard-welcome hidden" id="onboardWelcome">
+    <div class="onboard-welcome-logo">CI</div>
+    <h1>Қош келдіңіз<br><span>CHUCHA ICE</span>-ке!</h1>
+    <p>Сайтты қалай қолдану керектігін бірге үйренейік. Тек 30 секунд!</p>
+    <button class="onboard-btn" onclick="onboardNext()">Далее <i class="fas fa-arrow-right"></i></button>
+    <div class="onboard-dots">
+        <div class="onboard-dot active"></div><div class="onboard-dot"></div><div class="onboard-dot"></div>
+        <div class="onboard-dot"></div><div class="onboard-dot"></div><div class="onboard-dot"></div><div class="onboard-dot"></div>
+    </div>
+</div>
+
+<div class="onboard-tooltip" id="onboardTooltip">
+    <div class="onboard-tooltip-step" id="onboardStepLabel"></div>
+    <h3 id="onboardTitle"></h3>
+    <p id="onboardDesc"></p>
+    <button class="onboard-btn onboard-btn-sm" id="onboardNextBtn" onclick="onboardNext()">Далее <i class="fas fa-arrow-right"></i></button>
+</div>
+
+<div class="onboard-finger" id="onboardFinger">👆</div>
+
+<div class="onboard-finish" id="onboardFinish">
+    <div class="onboard-finish-icon">🎉</div>
+    <h2>Тамаша!</h2>
+    <p>Енді өзіңізге ұнаған тағамды таңдап, тапсырыс беріңіз!</p>
+    <button class="onboard-btn" onclick="onboardEnd()"><i class="fas fa-utensils"></i> Тапсырыс беруді бастау</button>
+</div>
+
+<script>
+    // =============================================
+    // ⚙️ БАЙЛАНЫС ДЕРЕКТЕРІ — ОСЫ ЖЕРДІ ӨЗГЕРТІҢІЗ!
+    // =============================================
+    const CONTACT = {
+        phone: '77082341312',             // WhatsApp нөмірі (тек сандар, 7-ден басталады)
+        phoneDisplay: '+7 708 234 13 12', // Сайтта көрінетін нөмір
+        instagram: 'https://www.instagram.com/aral_chucha_ice?stkn=d2JpdG9sa3lxeG1j',
+        tiktok: 'https://www.tiktok.com/@aral_chucha_ice?_r=1&_t=ZS-9AE7TiawD8p'
+    };
+
+    // Сурет жүктелмесе — көрсетілетін қызыл фон + эмодзи
+    function placeholderImg(emoji) {
+        const svg = "<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'>" +
+            "<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#3a1012'/><stop offset='1' stop-color='#1a1314'/></linearGradient></defs>" +
+            "<rect width='400' height='300' fill='url(#g)'/>" +
+            "<text x='50%' y='54%' font-size='110' text-anchor='middle' dominant-baseline='middle'>" + emoji + "</text></svg>";
+        return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+    }
+
+    // Unsplash сурет сілтемесі
+    const U = id => 'https://images.unsplash.com/photo-' + id + '?w=700&q=70&auto=format&fit=crop';
+
+    // =============================================
+    // МӘЗІР ДЕРЕКТЕРІ
+    // Суретті ауыстыру: img: 'images/doner1.jpeg' деп жазсаңыз болады
+    // =============================================
+    const GIFT = 'Ақ соус + перчик сыйлыққа';
+
+    const menuData = {
+        "doner": {
+            title: "Донер", nav: "Донер", icon: "fas fa-fire-burner", emoji: "🌯",
+            subtitle: "Шырынды донерлер — ақ соус пен перчик сыйлыққа!",
+            items: [
+                { name: "Донер тауық етімен", desc: "Куриный донер", price: 1400, img: U('1529006557810-274b9b2fc783'), gift: true },
+                { name: "Донер сиыр етімен", desc: "Говяжий донер", price: 1600, img: U('1599487488170-d11ec9c172f0'), gift: true, badge: "ХИТ" },
+                { name: "Батон Донер тауық етімен", desc: "Куриный донер в батоне", price: 1600, img: U('1561651823-34feb02250e4'), gift: true },
+                { name: "Батон Донер сиыр етімен", desc: "Говяжий донер в батоне", price: 1800, img: U('1633321702518-7feccafb94d5'), gift: true }
+            ]
+        },
+        "burger": {
+            title: "Бургерлер", nav: "Бургер", icon: "fas fa-burger", emoji: "🍔",
+            subtitle: "Сиыр етінен шырынды бургерлер",
+            items: [
+                { name: "Бургер сиыр етімен", desc: "Говяжий бургер", price: 1500, img: U('1568901346375-23c9450c58cd') },
+                { name: "Чизбургер сиыр етімен", desc: "Говяжий чизбургер", price: 1600, img: U('1550547660-d9450f859349'), badge: "ІРІМШІКТІ" }
+            ]
+        },
+        "snacks": {
+            title: "Фри & Чикен", nav: "Фри & Чикен", icon: "fas fa-drumstick-bite", emoji: "🍟",
+            subtitle: "Қытырлақ фри, чикен және наггетсы",
+            items: [
+                { name: "Фри", desc: "Картофель фри", price: 900, img: U('1573080496219-bb080dd4f877') },
+                { name: "Чикен 6шт", desc: "Қытырлақ тауық еті", price: 1900, img: U('1626082927389-6cd097cdc6ec') },
+                { name: "Наггетсы 6шт", desc: "Тауық наггетстері", price: 1000, img: U('1562967914-608f82629710') }
+            ]
+        },
+        "sauces": {
+            title: "Соустар", nav: "Соустар", icon: "fas fa-bottle-droplet", emoji: "🥫",
+            subtitle: "Дәмін арттыратын соустар",
+            items: [
+                { name: "Кетчуп", desc: "Кетчупный соус", price: 200, img: U('1472476443507-c7a5948772fc'), emoji: "🍅" },
+                { name: "Ірімшік соусы", desc: "Сырный соус", price: 200, img: U('1585325701165-351af916e581'), emoji: "🧀" },
+                { name: "Барбекю соусы", desc: "Соус барбекю", price: 200, img: U('1528607929212-2636ec44253e'), emoji: "🍖" }
+            ]
+        },
+        "drinks": {
+            title: "Сусындар", nav: "Сусындар", icon: "fas fa-glass-water", emoji: "🥤",
+            subtitle: "Салқын сусындар",
+            items: [
+                { name: "Coca-Cola 1л", desc: "Кока-Кола", price: 900, img: U('1554866585-cd94860890b7') },
+                { name: "Coca-Cola 0,5л", desc: "Кока-Кола", price: 595, img: U('1622483767028-3f66f32aef97') },
+                { name: "Maxi Tea 1л", desc: "Холодный чай", price: 900, img: U('1556679343-c7306c1976bc'), emoji: "🧋" },
+                { name: "Maxi Tea 0,5л", desc: "Холодный чай", price: 595, img: U('1499638673689-79a0b5115d87'), emoji: "🧋" },
+                { name: "Айран 0,3л", desc: "Айран", price: 350, img: U('1563636619-e9143da7973b'), emoji: "🥛" }
+            ]
+        },
+        "icecream": {
+            title: "Балмұздақтар", nav: "Балмұздақ", icon: "fas fa-ice-cream", emoji: "🍦",
+            subtitle: "Кремді, салқын, дәмді!",
+            badge: "❄ ICE",
+            items: [
+                { name: "Балмұздақ стакан 250гр", desc: "Мороженое в стаканчике", price: 900, img: U('1563805042-7684c019e1cb') },
+                { name: "Ражок", desc: "Мороженое в рожке", price: 900, img: U('1497034825429-c343d7c6a68f') },
+                { name: "Отбасылық балмұздақ 0,5кг", desc: "Семейное мороженое — бірнеше дәм таңдауға болады", price: 1700, img: U('1488900128323-21503983a07e'), badge: "ОТБАСЫЛЫҚ",
+                  options: ["Сливочный", "Шоколадный", "Клубничный", "Бабл Гам"] }
+            ]
+        }
+    };
+
+    // =============================================
+    // ЖАҺАНДЫҚ КҮЙЛЕР
+    // =============================================
+    let cart = [];
+    let orderType = 'собой';
+    const quantities = {};
+    const itemIndex = {}; // itemId → {item, section}
+
+    function fmt(n) { return n.toLocaleString('ru-RU'); }
+    function esc(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+    // =============================================
+    // НАВИГАЦИЯНЫ ГЕНЕРАЦИЯЛАУ
+    // =============================================
+    function generateNav() {
+        let desk = '<li><a href="#hero" class="active">Басты бет</a></li>';
+        let mob = '<li><a href="#hero" onclick="toggleMobileNav()"><i class="fas fa-house"></i> Басты бет</a></li>';
+        let chips = '';
+        let foot = '';
+        for (const [id, s] of Object.entries(menuData)) {
+            desk += `<li><a href="#${id}">${s.nav}</a></li>`;
+            mob += `<li><a href="#${id}" onclick="toggleMobileNav()"><i class="${s.icon}"></i> ${s.nav}</a></li>`;
+            chips += `<a href="#${id}" class="category-chip" data-target="${id}">${s.emoji} ${s.nav}</a>`;
+            foot += `<li><a href="#${id}">${s.nav}</a></li>`;
+        }
+        document.getElementById('navLinks').innerHTML = desk;
+        document.getElementById('mobileNavList').innerHTML = mob;
+        document.getElementById('categoryBarInner').innerHTML = chips;
+        document.getElementById('footerMenuList').innerHTML = foot;
+    }
+
+    // =============================================
+    // МӘЗІР СЕКЦИЯЛАРЫН ГЕНЕРАЦИЯЛАУ
+    // =============================================
+    function generateMenuSections() {
+        let html = '';
+        for (const [sectionId, section] of Object.entries(menuData)) {
+
+            // Балмұздақ алдында арнайы баннер
+            if (sectionId === 'icecream') {
+                html += `
+                <div style="padding: 40px 0 0;">
+                    <div class="ice-banner reveal">
+                        <div class="ice-banner-text">
+                            <div class="section-tag"><i class="fas fa-snowflake"></i> Салқын десерт</div>
+                            <h2>Отбасылық балмұздақ<br>0,5 кг — 1 700 ₸</h2>
+                            <p>Бүкіл отбасымен бөлісуге арналған үлкен қорап. Бір қорапқа 1, 2 немесе 4 дәмді бірден таңдай аласыз:</p>
+                            <div class="flavor-pills">
+                                <span class="flavor-pill">🥛 Сливочный</span>
+                                <span class="flavor-pill">🍫 Шоколадный</span>
+                                <span class="flavor-pill">🍓 Клубничный</span>
+                                <span class="flavor-pill">🍬 Бабл Гам</span>
+                            </div>
+                            <a href="#icecream" class="btn-primary"><i class="fas fa-ice-cream"></i> Таңдау</a>
+                        </div>
+                        <div class="ice-banner-img" role="img" aria-label="Балмұздақ"></div>
+                    </div>
+                </div>`;
+            }
+
+            html += `
+            <section class="section" id="${sectionId}">
+                <div class="section-header reveal">
+                    <div class="section-tag"><i class="${section.icon}"></i> ${section.title}</div>
+                    <h2 class="section-title"><span>${section.nav}</span> мәзірі</h2>
+                    <p class="section-desc">${section.subtitle}</p>
+                </div>
+                <div class="menu-grid">`;
+
+            section.items.forEach((item, idx) => {
+                const itemId = `${sectionId}-${idx}`;
+                quantities[itemId] = 1;
+                itemIndex[itemId] = { item, section };
+                const badge = item.badge || section.badge;
+                const fallback = placeholderImg(item.emoji || section.emoji);
+
+                html += `
+                <article class="menu-card reveal">
+                    <div class="menu-card-img-wrapper">
+                        <img src="${item.img}" alt="${esc(item.name)}" class="menu-card-img" loading="lazy"
+                             onerror="this.onerror=null;this.src='${fallback}'">
+                        ${badge ? `<div class="menu-card-badge">${badge}</div>` : ''}
+                    </div>
+                    <div class="menu-card-body">
+                        <h3 class="menu-card-name">${esc(item.name)}</h3>
+                        <div class="menu-card-desc">${esc(item.desc || '')}</div>
+                        ${item.gift ? `<div class="gift-tag"><i class="fas fa-gift"></i> ${GIFT}</div>` : ''}
+                        ${item.options ? `
+                        <div class="flavor-picker" id="opt-${itemId}" role="group" aria-label="Дәмдерді таңдаңыз">
+                            <div class="flavor-picker-label">
+                                <span>Дәмдерін таңдаңыз:</span>
+                                <span><b id="optcount-${itemId}">1</b> / ${item.options.length}</span>
+                            </div>
+                            <div class="flavor-chips">
+                                ${item.options.map((o, oi) => `
+                                <button type="button" class="flavor-chip" aria-pressed="${oi === 0}" data-value="${esc(o)}"
+                                        onclick="toggleFlavor('${itemId}', this)">
+                                    <span class="fc-check"><i class="fas fa-check"></i></span>${esc(o)}
+                                </button>`).join('')}
+                            </div>
+                        </div>` : ''}
+                        <div class="menu-card-bottom">
+                            <div class="menu-card-price">${fmt(item.price)} <small>₸</small></div>
+                            <div class="quantity-controls">
+                                <button class="qty-btn" onclick="changeQty('${itemId}', -1)" type="button" aria-label="Азайту">−</button>
+                                <span class="qty-display" id="qty-${itemId}">1</span>
+                                <button class="qty-btn" onclick="changeQty('${itemId}', 1)" type="button" aria-label="Көбейту">+</button>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn" id="btn-${itemId}" type="button" onclick="addToCart('${itemId}')">
+                            <i class="fas fa-plus"></i> Себетке қосу
+                        </button>
+                    </div>
+                </article>`;
+            });
+
+            html += `</div></section>`;
+        }
+        document.getElementById('menuSections').innerHTML = html;
+    }
+
+    // =============================================
+    // ДӘМ ТАҢДАУ — бірнеше дәмді белгілеу/алып тастау
+    // =============================================
+    function toggleFlavor(itemId, chip) {
+        const on = chip.getAttribute('aria-pressed') === 'true';
+        chip.setAttribute('aria-pressed', String(!on));
+        document.getElementById('optcount-' + itemId).textContent = getSelectedFlavors(itemId).length;
+    }
+
+    function getSelectedFlavors(itemId) {
+        return Array.from(document.querySelectorAll('#opt-' + itemId + ' .flavor-chip[aria-pressed="true"]'))
+            .map(c => c.dataset.value);
+    }
+
+    // =============================================
+    // САН ӨЗГЕРТУ (+/-)
+    // =============================================
+    function changeQty(itemId, delta) {
+        quantities[itemId] = Math.min(99, Math.max(1, (quantities[itemId] || 1) + delta));
+        const el = document.getElementById('qty-' + itemId);
+        if (el) el.textContent = quantities[itemId];
+    }
+
+    // =============================================
+    // СЕБЕТКЕ ҚОСУ
+    // =============================================
+    function addToCart(itemId) {
+        const { item, section } = itemIndex[itemId];
+        const qty = quantities[itemId] || 1;
+
+        // Дәм таңдалған болса — атауға қосамыз (бірнеше дәм болуы мүмкін)
+        let cartId = itemId;
+        let name = item.name;
+        const picker = document.getElementById('opt-' + itemId);
+        if (picker) {
+            const chosen = getSelectedFlavors(itemId);
+            if (chosen.length === 0) {
+                showToast('⚠️ Кемінде 1 дәм таңдаңыз!');
+                picker.classList.remove('shake'); void picker.offsetWidth; picker.classList.add('shake');
+                return;
+            }
+            cartId += '-' + chosen.join('+');
+            name += ' (' + chosen.join(' + ') + ')';
+        }
+        if (item.gift) name += ' 🎁';
+
+        const existing = cart.find(c => c.id === cartId);
+        if (existing) {
+            existing.qty += qty;
+        } else {
+            cart.push({
+                id: cartId,
+                name: name,
+                price: item.price,
+                img: item.img,
+                fallback: placeholderImg(item.emoji || section.emoji),
+                qty: qty
+            });
+        }
+
+        quantities[itemId] = 1;
+        const qtyEl = document.getElementById('qty-' + itemId);
+        if (qtyEl) qtyEl.textContent = '1';
+
+        const btn = document.getElementById('btn-' + itemId);
+        if (btn) {
+            btn.classList.add('added');
+            btn.innerHTML = '<i class="fas fa-check"></i> Қосылды!';
+            setTimeout(() => {
+                btn.classList.remove('added');
+                btn.innerHTML = '<i class="fas fa-plus"></i> Себетке қосу';
+            }, 1400);
+        }
+
+        renderCart(true);
+        showToast(name + ' себетке қосылды');
+    }
+
+    // =============================================
+    // СЕБЕТТІ САЛУ
+    // =============================================
+    function renderCart(bump) {
+        const cartItemsEl = document.getElementById('cartItems');
+        const cartFooterEl = document.getElementById('cartFooter');
+        const badges = [document.getElementById('cartBadge'), document.getElementById('floatingBadge')];
+
+        let totalItems = 0, totalPrice = 0;
+        cart.forEach(c => { totalItems += c.qty; totalPrice += c.price * c.qty; });
+
+        badges.forEach(b => {
+            b.textContent = totalItems;
+            b.classList.toggle('show', totalItems > 0);
+            if (bump) { b.classList.remove('bump'); void b.offsetWidth; b.classList.add('bump'); }
+        });
+
+        if (cart.length === 0) {
+            cartItemsEl.innerHTML = '<div class="cart-empty"><i class="fas fa-bag-shopping"></i>' +
+                '<p>Себет бос<br><small>Мәзірден тағам таңдаңыз</small></p></div>';
+            cartFooterEl.style.display = 'none';
+            return;
+        }
+
+        cartItemsEl.innerHTML = cart.map((item, i) => `
+            <div class="cart-item">
+                <img src="${item.img}" alt="" class="cart-item-img" onerror="this.onerror=null;this.src='${item.fallback}'">
+                <div class="cart-item-info">
+                    <div class="cart-item-name">${esc(item.name)}</div>
+                    <div class="cart-item-price">${fmt(item.price * item.qty)} ₸</div>
+                </div>
+                <div class="cart-item-actions">
+                    <div class="cart-item-qty">
+                        <button type="button" onclick="cartChangeQty(${i}, -1)" aria-label="Азайту">−</button>
+                        <span>${item.qty}</span>
+                        <button type="button" onclick="cartChangeQty(${i}, 1)" aria-label="Көбейту">+</button>
+                    </div>
+                    <button type="button" class="cart-item-remove" onclick="cartRemove(${i})" aria-label="Өшіру">
+                        <i class="fas fa-trash-can"></i>
+                    </button>
+                </div>
+            </div>`).join('');
+
+        document.getElementById('cartTotal').textContent = fmt(totalPrice) + ' ₸';
+        cartFooterEl.style.display = 'block';
+    }
+
+    function cartChangeQty(index, delta) {
+        if (!cart[index]) return;
+        cart[index].qty += delta;
+        if (cart[index].qty <= 0) cart.splice(index, 1);
+        renderCart();
+    }
+
+    function cartRemove(index) {
+        if (!cart[index]) return;
+        const removed = cart[index].name;
+        cart.splice(index, 1);
+        renderCart();
+        showToast(removed + ' өшірілді');
+    }
+
+    function toggleCart() {
+        const sidebar = document.getElementById('cartSidebar');
+        const overlay = document.getElementById('cartOverlay');
+        const isOpen = sidebar.classList.contains('open');
+        if (!isOpen) renderCart();
+        sidebar.classList.toggle('open', !isOpen);
+        overlay.classList.toggle('open', !isOpen);
+        document.body.style.overflow = isOpen ? '' : 'hidden';
+    }
+
+    function selectOrderType(btn, type) {
+        orderType = type;
+        document.querySelectorAll('.order-type-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('addressWrapper').classList.toggle('show', type === 'доставка');
+        if (type === 'доставка') setTimeout(() => document.getElementById('addressInput').focus(), 50);
+    }
+
+    // =============================================
+    // WHATSAPP-ҚА ТАПСЫРЫС ЖІБЕРУ
+    // =============================================
+    function sendToWhatsApp() {
+        if (cart.length === 0) return;
+
+        let total = 0;
+        let message = '🍦 *CHUCHA ICE — Жаңа тапсырыс!*\n\n📋 *Тапсырыс:*\n';
+        cart.forEach((item, i) => {
+            const line = item.price * item.qty;
+            total += line;
+            message += (i + 1) + '. ' + item.name + ' × ' + item.qty + ' = ' + fmt(line) + ' ₸\n';
+        });
+        message += '\n💰 *Жалпы сома: ' + fmt(total) + ' ₸*\n';
+
+        if (orderType === 'доставка') {
+            const address = document.getElementById('addressInput').value.trim();
+            if (!address) {
+                showToast('⚠️ Мекен-жайыңызды жазыңыз!');
+                document.getElementById('addressInput').focus();
+                return;
+            }
+            message += '\n📦 *Тапсырыс түрі:* 🚗 Доставка\n📍 *Мекен-жай:* ' + address;
+        } else {
+            message += '\n📦 *Тапсырыс түрі:* 🛍 Собой (өзім алам)';
+        }
+        message += '\n\nРахмет! 🙏';
+
+        window.open('https://wa.me/' + CONTACT.phone + '?text=' + encodeURIComponent(message), '_blank');
+    }
+
+    function showToast(text) {
+        const container = document.getElementById('toastContainer');
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.innerHTML = '<i class="fas fa-circle-check"></i> <span></span>';
+        toast.querySelector('span').textContent = text;
+        container.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    }
+
+    function toggleMobileNav() {
+        document.getElementById('mobileNavOverlay').classList.toggle('open');
+        document.getElementById('mobileNavDrawer').classList.toggle('open');
+    }
+
+    // =============================================
+    // СКРОЛЛ: навбар + белсенді сілтеме + чиптер
+    // =============================================
+    function onScroll() {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+
+        const y = window.scrollY + 160;
+        let current = 'hero';
+        document.querySelectorAll('section[id]').forEach(s => {
+            if (y >= s.offsetTop) current = s.id;
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+        });
+        document.querySelectorAll('.category-chip').forEach(c => {
+            const on = c.dataset.target === current;
+            if (on && !c.classList.contains('active')) {
+                c.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+            }
+            c.classList.toggle('active', on);
+        });
+    }
+    let scrollTicking = false;
+    window.addEventListener('scroll', () => {
+        if (!scrollTicking) {
+            requestAnimationFrame(() => { onScroll(); scrollTicking = false; });
+            scrollTicking = true;
+        }
+    }, { passive: true });
+
+    // Скролл анимациялары
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+
+    // Hero бөлшектері — қызыл және кремді "қар"
+    function createParticles() {
+        const container = document.getElementById('particles');
+        for (let i = 0; i < 22; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const size = (2 + Math.random() * 5) + 'px';
+            p.style.cssText = `left:${Math.random() * 100}%;width:${size};height:${size};` +
+                `animation-delay:${Math.random() * 6}s;animation-duration:${4 + Math.random() * 4}s;` +
+                `background:${i % 3 === 0 ? '#FFF4E6' : '#E50914'}`;
+            container.appendChild(p);
+        }
+    }
+
+    function applyContacts() {
+        document.getElementById('phoneLink').href = 'tel:+' + CONTACT.phone;
+        document.getElementById('phoneText').textContent = CONTACT.phoneDisplay;
+        document.getElementById('waLink').href = 'https://wa.me/' + CONTACT.phone;
+        ['instaLink', 'instaLink2'].forEach(id => document.getElementById(id).href = CONTACT.instagram);
+        ['tiktokLink', 'tiktokLink2'].forEach(id => document.getElementById(id).href = CONTACT.tiktok);
+        document.getElementById('year').textContent = new Date().getFullYear();
+    }
+
+    // =============================================
+    // ІСКЕ ҚОСУ
+    // =============================================
+    document.addEventListener('DOMContentLoaded', () => {
+        generateNav();
+        generateMenuSections();
+        applyContacts();
+        createParticles();
+        renderCart();
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        onScroll();
+        setTimeout(onboardInit, 500);
+    });
+
+    // =============================================
+    // ТАНЫСТЫРУ ЖҮЙЕСІ / Onboarding
+    // =============================================
+    let onboardStep = 0;
+    const onboardSteps = [
+        { type: 'welcome' },
+        { type: 'highlight', target: '.mobile-menu-btn', targetDesktop: '.nav-links',
+          title: '📱 Мәзір навигациясы', desc: 'Мұнда барлық санаттар бар: Донер, Бургер, Фри, Сусындар, Балмұздақ.', position: 'bottom' },
+        { type: 'highlight', target: '.menu-card',
+          title: '🍽️ Тағам таңдау', desc: 'Әр тағамның суреті, атауы және бағасы көрсетілген. Донерге ақ соус пен перчик — сыйлыққа!', position: 'bottom', scroll: true },
+        { type: 'highlight', target: '.quantity-controls',
+          title: '🔢 Санын таңдау', desc: '« + » басып арттырыңыз, « − » басып кемітіңіз.', position: 'top', scroll: true },
+        { type: 'highlight', target: '.add-to-cart-btn',
+          title: '🛒 Себетке қосу', desc: 'Осы батырманы басыңыз — тағам себетке қосылады!', position: 'top', scroll: true },
+        { type: 'highlight', target: '.cart-btn',
+          title: '🛍️ Себетті ашу', desc: 'Себетте таңдағандарыңыз бен жалпы сома көрінеді. Сосын WhatsApp арқылы тапсырыс бересіз!', position: 'bottom' },
+        { type: 'finish' }
+    ];
+    const ONBOARD_TOTAL = onboardSteps.length;
+
+    function safeGet(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
+    function safeSet(key, v) { try { localStorage.setItem(key, v); } catch (e) {} }
+
+    function onboardInit() {
+        if (safeGet('chuchaIceOnboarded') === 'true') return;
+        onboardStep = 0;
+        document.body.style.overflow = 'hidden';
+        onboardShowStep();
+    }
+
+    function onboardClearHighlights() {
+        document.querySelectorAll('.onboard-highlight').forEach(el => el.classList.remove('onboard-highlight'));
+    }
+
+    function onboardShowStep() {
+        const $ = id => document.getElementById(id);
+        $('onboardWelcome').classList.add('hidden');
+        $('onboardTooltip').classList.remove('visible');
+        $('onboardFinger').classList.remove('visible');
+        $('onboardFinish').classList.remove('visible');
+        $('onboardOverlay').classList.remove('hidden');
+        onboardClearHighlights();
+
+        document.querySelectorAll('.onboard-dot').forEach((d, i) => d.classList.toggle('active', i === onboardStep));
+
+        const step = onboardSteps[onboardStep];
+        if (!step) return onboardEnd();
+
+        if (step.type === 'welcome') {
+            $('onboardWelcome').classList.remove('hidden');
+            $('onboardSkip').classList.remove('hidden');
+            return;
+        }
+        if (step.type === 'finish') {
+            $('onboardSkip').classList.add('hidden');
+            $('onboardFinish').classList.add('visible');
+            return;
+        }
+
+        $('onboardSkip').classList.remove('hidden');
+        const sel = (step.targetDesktop && window.innerWidth > 1024) ? step.targetDesktop : step.target;
+        const el = document.querySelector(sel);
+        if (!el || el.offsetParent === null) { onboardStep++; return onboardShowStep(); }
+
+        if (step.scroll) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        setTimeout(() => {
+            el.classList.add('onboard-highlight');
+            $('onboardStepLabel').innerHTML = '<i class="fas fa-graduation-cap"></i> <span>' + onboardStep + ' / ' + (ONBOARD_TOTAL - 2) + '</span>';
+            $('onboardTitle').textContent = step.title;
+            $('onboardDesc').textContent = step.desc;
+            $('onboardNextBtn').innerHTML = onboardStep >= ONBOARD_TOTAL - 2
+                ? 'Аяқтау <i class="fas fa-check"></i>'
+                : 'Далее <i class="fas fa-arrow-right"></i>';
+            onboardPosition(el, step.position);
+        }, step.scroll ? 650 : 100);
+    }
+
+    function onboardPosition(el, position) {
+        const tooltip = document.getElementById('onboardTooltip');
+        const finger = document.getElementById('onboardFinger');
+        const r = el.getBoundingClientRect();
+        const w = Math.min(320, window.innerWidth - 32);
+        const h = tooltip.offsetHeight || 200;
+        const gap = 16;
+
+        let left = r.left + r.width / 2 - w / 2;
+        let top = position === 'bottom' ? r.bottom + gap : r.top - gap - h;
+        left = Math.max(16, Math.min(left, window.innerWidth - w - 16));
+        if (top < 16) top = r.bottom + gap;
+        if (top + h > window.innerHeight - 16) top = Math.max(16, r.top - gap - h);
+
+        tooltip.style.left = left + 'px';
+        tooltip.style.top = top + 'px';
+        tooltip.classList.add('visible');
+
+        finger.style.left = (r.left + r.width / 2 - 16) + 'px';
+        finger.style.top = Math.max(4, r.top - 42) + 'px';
+        finger.classList.add('visible');
+    }
+
+    function onboardNext() {
+        onboardStep++;
+        if (onboardStep >= ONBOARD_TOTAL) return onboardEnd();
+        onboardShowStep();
+    }
+
+    function onboardEnd() {
+        safeSet('chuchaIceOnboarded', 'true');
+        ['onboardOverlay', 'onboardWelcome', 'onboardSkip'].forEach(id => document.getElementById(id).classList.add('hidden'));
+        ['onboardTooltip', 'onboardFinger', 'onboardFinish'].forEach(id => document.getElementById(id).classList.remove('visible'));
+        onboardClearHighlights();
+        document.body.style.overflow = '';
+        showToast('🎉 Қош келдіңіз CHUCHA ICE-ке!');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Тестілеу: консольде resetOnboarding() деп жазыңыз
+    function resetOnboarding() {
+        try { localStorage.removeItem('chuchaIceOnboarded'); } catch (e) {}
+        location.reload();
+    }
+</script>
+
+</body>
+</html>
