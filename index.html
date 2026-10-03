@@ -9,7 +9,7 @@
 
     <!-- ===== FAVICON / Логотип (favicon.jpeg файлын сайт папкасына салыңыз) ===== -->
     <link rel="icon" type="image/jpeg" href="favicon.jpeg">
-    <link rel="apple-touch-icon" href="favicon.jpeg">
+    <link rel="apple-touch-icon" href="favicon.jpe">
 
     <!-- ===== ШРИФТТЕР ===== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -114,19 +114,20 @@
         /* favicon.jpeg болмаса — "CI" әріптері көрінеді */
         .logo-icon {
             width: 44px; height: 44px;
-            border-radius: 14px;
+            border-radius: 12px;
             background: linear-gradient(135deg, var(--main-light), var(--main-dark));
             display: flex; align-items: center; justify-content: center;
             font-family: 'Montserrat', sans-serif;
-            font-weight: 900; font-size: 17px;
+            font-weight: 900; font-size: 18px;
             color: #fff;
             box-shadow: var(--shadow-main);
             overflow: hidden;
             flex-shrink: 0;
+            letter-spacing: -1px;
         }
         .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
 
-        .logo-text { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 21px; color: var(--text-primary); letter-spacing: -0.3px; }
+        .logo-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 22px; color: var(--text-primary); letter-spacing: -0.3px; }
         .logo-text span { color: var(--main); }
 
         .nav-links {
@@ -1023,6 +1024,15 @@
         @keyframes onboardPoint { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
         .onboard-finish-icon { font-size: 64px; margin-bottom: 22px; }
         .onboard-finish h2 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(24px, 5vw, 36px); margin-bottom: 12px; }
+        /* ===== ЛОГОТИП СУРЕТІ ===== */
+        .logo-icon-img {
+            width: 44px;       /* Ені */
+            height: 44px;      /* Биіктігі */
+            border-radius: 20px; /* Дөңгелек жиек — санды арттырсаңыз көбірек дөңгелектеледі */
+            object-fit: cover; /* Сурет дұрыс сыйысады */
+            display: block;
+            flex-shrink: 0;
+        }
     </style>
 </head>
 <body>
@@ -1032,8 +1042,8 @@
     <!-- ===== НАВБАР ===== -->
     <nav class="navbar" id="navbar">
         <div class="navbar-inner">
-            <a href="#hero" class="logo" aria-label="Chucha Ice басты бет">
-                <div class="logo-icon"><img src="favicon.jpeg" alt="" onerror="this.remove()">CI</div>
+            <a href="#hero" class="logo">
+                <img src="favicon.jpeg" alt="CHUCHA ICE Logo" class="logo-icon-img">
                 <div class="logo-text"><span>CHUCHA</span> ICE</div>
             </a>
 
@@ -1056,7 +1066,7 @@
     <div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="toggleMobileNav()"></div>
     <div class="mobile-nav-drawer" id="mobileNavDrawer">
         <a href="#hero" class="logo" onclick="toggleMobileNav()">
-            <div class="logo-icon"><img src="favicon.jpeg" alt="" onerror="this.remove()">CI</div>
+            <img src="favicon.jpeg" alt="CHUCHA ICE Logo" class="logo-icon-img">
             <div class="logo-text"><span>CHUCHA</span> ICE</div>
         </a>
         <ul id="mobileNavList"></ul>
@@ -1144,7 +1154,7 @@
         <div class="footer-inner">
             <div class="footer-brand">
                 <a href="#hero" class="logo">
-                    <div class="logo-icon"><img src="favicon.jpeg" alt="" onerror="this.remove()">CI</div>
+                    <div class="logo-icon"><img src="favicon.jpeg" alt="CHUCHA ICE Logo" class="logo-icon-img">CI</div>
                     <div class="logo-text"><span>CHUCHA</span> ICE</div>
                 </a>
                 <p>Донер, бургер, фри, чикен және кремді балмұздақ — бәрі сіз үшін. Тапсырысты WhatsApp арқылы беріңіз!</p>
